@@ -20,20 +20,21 @@
                   </button>
             </p>
             <div class="collapse " id="collapseExample">
-                <div class="card card-body d-flex align-items-center flex-column">
+                <form action="" class="card card-body d-flex align-items-center flex-column">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" placeholder="Enter Name" required>
                     <label for="writer">Writer</label>
-                    <input type="text" name="writer" id="writer" placeholder="Writer">
+                    <input type="text" name="writer" id="writer" placeholder="Writer" required>
                     <label for="pages">Pages</label>
-                    <input type="number" name="pages" id="pages" min="50" max="1500">
+                    <input type="number" name="pages" id="pages" min="50" max="1500" required>
                     <label for="read">Read?</label>
                     <select class="my-2"name="read" id="read">
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </select>
-                    <button class="btn btn-outline-dark" value="s">Submit</button>
-                </div>
+                    <!-- <button class="btn btn-outline-dark" value="s">Submit</button> -->
+                    <button class="btn btn-outline-dark" type="submit">Submit</button>
+                </form>
               </div>
         </section>
         <main id="main-list" class="d-flex flex-column align-items-center">

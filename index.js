@@ -13,7 +13,6 @@ function addBookToLibrary(name,writer,pages,read){
     myBookshelf.push(newBook);
 }
 
-const mainList = document.getElementById('main-list');
 
 addBookToLibrary("Random book 1","random writer 1",100,false);
 addBookToLibrary("Random book 2","random writer 2",100,false);
@@ -44,12 +43,13 @@ function removeItem(){
 }
 
 function addNewBook(){
-    console.log("Adding new book");   
+    console.log("Adding new book");
+
 }
 function refreshEventListeners(){
     let buttons = document.querySelectorAll('button');
     buttons.forEach(button=>{
-        if(button.value == "s") button.addEventListener('click',addNewBook);
+        if(button.type == "submit") return;
         else button.addEventListener('click',removeItem);
     })
 }
@@ -62,4 +62,12 @@ function displayBooks(){
     refreshEventListeners();
 }
 
+const mainList = document.getElementById('main-list');
+const inputs = document.querySelectorAll('input');
+
+const form = document.querySelector('form');
+form.addEventListener('submit',(e)=>{
+    console.log(e);
+    e.preventDefault();
+})
 displayBooks();
