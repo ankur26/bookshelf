@@ -53,7 +53,7 @@ function clearForm(){
 }
 function addNewBook(){
     let [name,writer,pages] = [...inputs].map(input=>input.value);
-    let read = Boolean(select.value);
+    let read = select.value === "true";
     addBookToLibrary(name,writer,pages,read);
     clearForm();
     displayBooks();

@@ -6,6 +6,9 @@ The project itself is a bookshelf/library, which stores a list of books with som
 
 ### Topics covered.
 1. Javascript Objects.
-2. LocalStorage in JS.
-3. Data creation/manipulation using forms and their handling.
+2. Data creation/manipulation using forms and their handling.
 
+
+### Implementation
+
+Project is a very barebones functionality as the objective here was to solidify our JS concepts on Objects. Bootstrap was used for the CSS.
