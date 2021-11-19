@@ -1,6 +1,11 @@
 // console.log("Page has been linked");
 let myBookshelf = [];
 
+const mainList = document.getElementById('main-list');
+const inputs = document.querySelectorAll('input');
+const select = document.querySelector('select');
+const toggleForm = document.getElementsByClassName('book-toggler')[0];
+// console.log(toggleForm);
 function Book(name,writer,pages,read){
     this.name = name;
     this.writer = writer;
@@ -29,29 +34,41 @@ function getDiv(book,index){
     // myDiv.classList.add('');
     myDiv.setAttribute("id",`book${index}`);
     myDiv.innerHTML = `<h3>${book.name}</h3><p>${book.writer},${book.pages},${book.read? "Read" :"Unread"}</p>`;
-    myDiv.innerHTML += `<button class="btn btn-danger w-25 align-self-center" value="${index}">Remove</button>`;
+    myDiv.innerHTML += `<div class="d-flex justify-content-center"> <button type="button" class="btn btn-danger w-25 remove-button" value="${index}">Remove</button><button type="button" class="btn btn-primary read-button" value="${index}">Mark as Read</button></div>`;
     return myDiv;
 }
-function addValue(){
-    console.log("In this function");
-}
+
 function removeItem(){
 
-    if (this.value!=="d" && this.value !=="s") myBookshelf.splice(this.value,1);
+    myBookshelf.splice(this.value,1);
     // console.log(myBookshelf);
     displayBooks();
 }
-
+function markRead(){
+    myBookshelf[parseInt(this.value)].read = true;
+    displayBooks();
+}
+function clearForm(){
+    inputs.forEach(input=>input.value="");
+}
 function addNewBook(){
-    console.log("Adding new book");
-
+    let [name,writer,pages] = [...inputs].map(input=>input.value);
+    let read = Boolean(select.value);
+    addBookToLibrary(name,writer,pages,read);
+    clearForm();
+    displayBooks();
 }
 function refreshEventListeners(){
-    let buttons = document.querySelectorAll('button');
-    buttons.forEach(button=>{
-        if(button.type == "submit") return;
-        else button.addEventListener('click',removeItem);
+    let removeButtons = document.querySelectorAll('.remove-button');
+    let readButtons = document.querySelectorAll('.read-button');
+    removeButtons.forEach(button=>{
+        button.addEventListener('click',removeItem);
+        // console.log(button.type);
+    });
+    readButtons.forEach(button=>{
+        button.addEventListener('click',markRead);
     })
+
 }
 function displayBooks(){
     mainList.innerHTML = '';
@@ -62,12 +79,10 @@ function displayBooks(){
     refreshEventListeners();
 }
 
-const mainList = document.getElementById('main-list');
-const inputs = document.querySelectorAll('input');
-
 const form = document.querySelector('form');
 form.addEventListener('submit',(e)=>{
-    console.log(e);
     e.preventDefault();
+    addNewBook();    
+    
 })
 displayBooks();
